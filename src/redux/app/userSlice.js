@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async ({ username, password }) => {
+  async ({ username, password }, { rejectWithValue }) => {
     try {
       const res = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk(
       if (result.id) {
         return result;
       }
-      throw new Error(result.message);
+      return rejectWithValue(result.message);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +31,6 @@ const initialState = {
   userInfo: {},
   token: null,
   isLogin: false,
-  
 };
 const usersSlice = createSlice({
   name: "user",
