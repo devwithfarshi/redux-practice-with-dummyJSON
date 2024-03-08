@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import Login from "./components/Login";
 import Products from "./components/Products";
+import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Login />,
+      },
+       {
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/products",

@@ -41,7 +41,7 @@ const NavbarDefault=()=> {
             fill="#90A4AE"
           />
         </svg>
-        <Link to="#" className="flex items-center text-black">
+        <Link to="/profile" className="flex items-center text-black">
           Account
         </Link>
       </Typography>

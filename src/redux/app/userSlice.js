@@ -30,7 +30,8 @@ const initialState = {
   error: null,
   userInfo: {},
   token: null,
-  success: false,
+  isLogin: false,
+  
 };
 const usersSlice = createSlice({
   name: "user",
@@ -46,11 +47,11 @@ const usersSlice = createSlice({
       state.error = null;
       state.userInfo = action.payload;
       state.token = action.payload.token;
-      state.success = true;
+      state.isLogin = true;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = false;
-      state.success = false;
+      state.isLogin = false;
       state.error = action.payload;
     });
   },
