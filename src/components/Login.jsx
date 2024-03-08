@@ -1,15 +1,19 @@
 import {useFormik} from "formik"
-
+import {loginUser} from "../redux/app/userSlice"
+import {useDispatch,useSelector} from "react-redux"
 const Login=()=>{
-
+const dispatch=useDispatch()
+const state =useSelector(state=>console.log(state))
+console.log(state)
 const formik = useFormik({
      initialValues: {
        username: '',
        password:''
      },
      onSubmit: values => {
-       alert(JSON.stringify(values, null, 2));
-     },
+         console.log(values)
+        //alert(JSON.stringify(user))
+     }
    });
 
     return (
@@ -32,7 +36,7 @@ const formik = useFormik({
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Sign in to your account
         </h1>
-        <form className="space-y-4 md:space-y-6" action="#">
+        <form onSubmit={formik.handleSubmit} className="space-y-4 md:space-y-6" action="#">
           <div>
             <label
               htmlFor="email"
