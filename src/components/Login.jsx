@@ -3,8 +3,8 @@ import {loginUser} from "../redux/app/userSlice"
 import {useDispatch,useSelector} from "react-redux"
 const Login=()=>{
 const dispatch=useDispatch()
-const state =useSelector(state=>console.log(state))
-console.log(state)
+const {userInfo} =useSelector(state=>state.user)
+
 const formik = useFormik({
      initialValues: {
        username: '',

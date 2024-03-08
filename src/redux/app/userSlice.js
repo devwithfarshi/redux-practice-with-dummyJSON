@@ -26,22 +26,7 @@ success:false
 const usersSlice = createSlice({
   name: "user",
   initialState,
-  reducers: { },
-  extraReducers: {
-    // register user
-    [loginUser.pending]: (state) => {
-      state.loading = true
-      state.error = null
-    },
-    [loginUser.fulfilled]: (state, { payload }) => {
-      state.loading = false
-      state.success = true // registration successful
-      state.userInfo=payload
-    },
-    [loginUser.rejected]: (state, { payload }) => {
-      state.loading = false
-      state.error = payload
-    },
-}});
+  reducers: { }
+});
 
 export default usersSlice.reducer;
