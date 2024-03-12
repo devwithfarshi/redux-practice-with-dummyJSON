@@ -2,13 +2,23 @@ import {Outlet} from "react-router-dom"
 import NavBar from "./components/NavBar"
 import {useEffect} from "react"
 import {useNavigate} from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch} from "react-redux";
+import {getAuthUser} from "./redux/app/userSlice"
 function App() {
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const { isLogin} = useSelector((state) => state.user);
   
 useEffect(()=>{
- if(isLogin) navigate("/profile")  
+const token = localStorage.getItem("userToken")
+
+if(token){
+    dispatch(getAuthUser(token))
+}
+ if(isLogin){
+    navigate("/profile") 
+ }
+    
 },[isLogin])
   return (
     <>
