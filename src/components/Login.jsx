@@ -1,3 +1,4 @@
+import {useEffect} from "react"
 import { useFormik } from "formik";
 import { loginUser } from "../redux/app/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, loading } = useSelector((state) => state.user);
+  const { error, loading,isLogin } = useSelector((state) => state.user);
 
   const formik = useFormik({
     initialValues: {
@@ -16,6 +17,13 @@ const Login = () => {
       dispatch(loginUser(values));
     },
   });
+  useEffect(()=>{
+
+if(isLogin){
+    navigate("/profile")
+}
+    
+},[isLogin])
 
   return (
     <>

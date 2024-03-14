@@ -7,7 +7,7 @@ export const getAllProduct=createAsyncThunk(
     try{
       const res = await axios.get("https://dummyjson.com/products");
       console.log(res.data)
-        return res.data  
+        return res.data.products  
     } catch(err) {
         alert(JSON.stringify({err}))
         console.log({err})

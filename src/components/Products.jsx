@@ -1,6 +1,7 @@
 import {useEffect} from "react"
 import {useDispatch,useSelector} from "react-redux"
 import {getAllProduct} from "../redux/app/productSlice"
+import { Bars } from 'react-loader-spinner'
 const Products =()=>{
 const dispatch=useDispatch()
 const {loading, products} =useSelector(state=>state.product)
@@ -8,6 +9,25 @@ const {loading, products} =useSelector(state=>state.product)
 useEffect(()=>{
     dispatch(getAllProduct())
 },[])
+
+if(loading){
+    return (
+        <>
+            <div className="h-screen flex items-center justify-center">
+                <Bars
+  height="80"
+  width="80"
+  color="#4fa94d"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  />
+            </div>
+        </>
+    )
+}
+
     return (
         <>
       <div className="bg-gray-900 py-16">
@@ -15,13 +35,11 @@ useEffect(()=>{
     <h2 className="text-3xl font-bold text-white mb-8">
       Introducing Our Latest Product
     </h2>
-    {
-        loading?<h1>Loading products....</h1>:
     
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {
-        products.products && 
-            products.products.map((product)=>{
+        products&& 
+            products.map((product)=>{
                 return(
                     <>
                     <div className="bg-white rounded-lg shadow-lg p-8">
@@ -56,11 +74,11 @@ useEffect(()=>{
                     </>
                 )
             })
-        }
-      
+        
+      }
       
     </div>
-    }
+    
   </div>
 </div>
         </>

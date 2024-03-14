@@ -14,12 +14,10 @@ const token = localStorage.getItem("userToken")
 
 if(token){
     dispatch(getAuthUser(token))
-}
- if(isLogin){
-    navigate("/profile") 
- }
     
-},[isLogin])
+}
+    
+},[])
   return (
     <>
     <NavBar/>
