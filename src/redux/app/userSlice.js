@@ -25,34 +25,34 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-
-
 export const getAuthUser = createAsyncThunk(
   "auth/getAuthUser",
-  async ( token, { rejectWithValue }) => {
-  console.log(token)
+  async (token, { rejectWithValue }) => {
+    console.log(token);
     try {
-  const res=await fetch('https://dummyjson.com/auth/me', {
-  method: 'GET',
-  headers: {
-    'Authorization': 'Bearer '+token, 
-  }, 
-})
+      const res = await fetch("https://dummyjson.com/auth/me", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
-const results = await res.json()
+      const results = await res.json();
 
-//alert(JSON.stringify({results}))
-return results 
+      //alert(JSON.stringify({results}))
+      return results;
     } catch (error) {
       console.log(error);
+      rejectWithValue(error);
       //alert(JSON.stringify({error}))
     }
   }
 );
 
-
-
-const token = localStorage.getItem("userToken") !== null ? localStorage.getItem("userToken") :null
+const token =
+  localStorage.getItem("userToken") !== null
+    ? localStorage.getItem("userToken")
+    : null;
 
 const initialState = {
   loading: false,
@@ -82,10 +82,9 @@ const usersSlice = createSlice({
       state.isLogin = false;
       state.error = action.payload;
     });
-    
+
     //get auth user
-    
-    
+
     builder.addCase(getAuthUser.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -102,7 +101,6 @@ const usersSlice = createSlice({
       state.isLogin = false;
       state.error = action.payload;
     });
-    
   },
 });
 
